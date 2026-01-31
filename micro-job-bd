@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মাইক্রো জব প্ল্যাটফর্ম</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f2f5; }
+        
+        /* হেডার ও মেনু */
+        header { background: #2c3e50; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .menu-icon { font-size: 24px; cursor: pointer; }
+        
+        /* থ্রি-ডট সাইডবার */
+        .sidebar { height: 100%; width: 0; position: fixed; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; z-index: 2000; }
+        .sidebar a { padding: 10px 25px; text-decoration: none; font-size: 18px; color: #818181; display: block; transition: 0.3s; }
+        .sidebar a:hover { color: #f1f1f1; }
+        .sidebar .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; margin-left: 50px; }
+
+        /* ব্যালেন্স কার্ড */
+        .balance-card { background: white; margin: 15px; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .pending { color: orange; font-weight: bold; }
+        
+        /* কাজের লিস্ট */
+        .job-card { background: white; margin: 15px; padding: 15px; border-radius: 8px; border-left: 5px solid #3498db; }
+        .job-card h3 { color: #2c3e50; margin-bottom: 5px; }
+        .btn { display: inline-block; padding: 8px 15px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; cursor: pointer; border: none; }
+        
+        /* নিচের মেনু */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 10px; border-top: 1px solid #ddd; }
+        .bottom-nav div { text-align: center; font-size: 12px; color: #555; cursor: pointer; }
+
+        /* ফরম (লুকানো থাকবে) */
+        .upload-section { display: none; padding: 20px; background: white; margin: 15px; border-radius: 10px; }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">হোম (Home)</a>
+  <a href="#">উইথড্র (Withdraw)</a>
+  <a href="#">পেমেন্ট প্রুফ</a>
+  <a href="#">লগইন / লগআউট</a>
+</div>
+
+<header>
+    <div class="menu-icon" onclick="openNav()">&#9776;</div>
+    <h2>MicroJob BD</h2>
+    <div>🔔</div>
+</header>
+
+<div class="balance-card">
+    <p>আপনার ব্যালেন্স: <b>$৫.৫০</b></p>
+    <p class="pending">পেন্ডিং ব্যালেন্স: $১.২০</p>
+</div>
+
+<div id="uploadPage" class="upload-section">
+    <h3>নতুন কাজ আপলোড করুন</h3>
+    <input type="text" placeholder="কাজের শিরোনাম (যেমন: ইউটিউব সাবস্ক্রাইব)">
+    <input type="number" placeholder="কাজের মূল্য ($)">
+    <textarea placeholder="কাজের বিস্তারিত বর্ণনা দিন..."></textarea>
+    <input type="text" placeholder="কাজের লিঙ্ক">
+    <p>কাজের স্ক্রিনশট দিন:</p>
+    <input type="file" accept="image/*">
+    <button class="btn" style="background: #27ae60;" onclick="alert('কাজটি আপলোড হয়েছে!')">কাজ আপলোড দিন</button>
+</div>
+
+<div id="homePage">
+    <div class="job-card">
+        <h3>YouTube Subscribe</h3>
+        <p>টাকা: $০.১০</p>
+        <button class="btn" onclick="showDetail()">বিস্তারিত দেখুন</button>
+        <div id="detail" style="display:none; margin-top:10px; font-size: 14px; border-top: 1px solid #eee; padding-top:10px;">
+            <p>লিঙ্ক: <a href="#">Click Here</a></p>
+            <p>প্রুফ হিসেবে ২টা স্ক্রিনশট দিন।</p>
+            <input type="file" multiple>
+            <button class="btn" style="background:orange;">সাবমিট প্রুফ</button>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <div onclick="showHome()">🏠<br>হোম</div>
+    <div onclick="showUpload()">➕<br>কাজ আপলোড</div>
+    <div>👤<br>প্রোফাইল</div>
+</div>
+
+<script>
+    function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    
+    function showUpload() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("uploadPage").style.display = "block";
+    }
+    
+    function showHome() {
+        document.getElementById("homePage").style.display = "block";
+        document.getElementById("uploadPage").style.display = "none";
+    }
+
+    function showDetail() {
+        var x = document.getElementById("detail");
+        if (x.style.display === "none") { x.style.display = "block"; } 
+        else { x.style.display = "none"; }
+    }
+</script>
+
+</body>
+</html>
