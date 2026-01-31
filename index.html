@@ -3,66 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমার ব্যক্তিগত ওয়েবসাইট</title>
+    <title>Micro Job Platform</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 50px 20px;
-        }
-        h1 { margin: 0; font-size: 2.5em; }
-        p { font-size: 1.2em; }
-        .container {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn:hover { background-color: #c0392b; }
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f0f2f5; padding-bottom: 80px; }
+        header { background: #1a73e8; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; }
+        .balance-card { background: white; margin: 15px; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .balance-amount { color: #27ae60; font-size: 32px; font-weight: bold; margin: 10px 0; }
+        .job-card { background: white; margin: 15px; padding: 15px; border-radius: 10px; border-left: 6px solid #1a73e8; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .footer-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #ddd; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        .nav-item { text-align: center; cursor: pointer; font-weight: bold; color: #555; transition: 0.3s; }
+        .nav-item:hover { color: #1a73e8; }
+        .btn { background: #1a73e8; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        section { display: none; padding: 10px; }
+        #home { display: block; }
+        input, textarea { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>স্বাগতম আমার ওয়েবসাইটে!</h1>
-        <p>আমি একজন নতুন ওয়েব ডেভেলপার</p>
-    </header>
+<header>Micro Job BD</header>
 
-    <div class="container">
-        <h2>আমার সম্পর্কে</h2>
-        <p>হ্যালো! আমি HopWeb এবং GitHub ব্যবহার করে আমার প্রথম ওয়েবসাইট তৈরি করছি। কোডিং শিখতে আমার খুব ভালো লাগছে।</p>
-        
-        <a href="#" class="btn">আমার ফেসবুক প্রোফাইল</a>
+<div class="balance-card">
+    <p style="margin:0; color: #777;">আপনার বর্তমান ব্যালেন্স</p>
+    <div class="balance-amount">$0.00</div>
+    <small style="color: orange;">পেন্ডিং পেমেন্ট: $0.00</small>
+</div>
+
+<section id="home">
+    <h3 style="margin-left:10px;">উপলব্ধ কাজসমূহ</h3>
+    <div class="job-card">
+        <h4>ইউটিউব চ্যানেল সাবস্ক্রাইব</h4>
+        <p>পেমেন্ট: <b>$0.05</b></p>
+        <button class="btn" onclick="alert('কাজটি করতে আগে লগইন করুন!')">বিস্তারিত দেখুন</button>
     </div>
+    <div class="job-card">
+        <h4>ফেসবুক পেজ লাইক</h4>
+        <p>পেমেন্ট: <b>$0.03</b></p>
+        <button class="btn" onclick="alert('কাজটি করতে আগে লগইন করুন!')">বিস্তারিত দেখুন</button>
+    </div>
+</section>
 
-    <footer>
-        <p>© ২০২৬ | আমার প্রথম ওয়েবসাইট</p>
-    </footer>
+<section id="upload">
+    <div class="job-card">
+        <h3>নতুন কাজ আপলোড করুন</h3>
+        <input type="text" placeholder="কাজের শিরোনাম">
+        <textarea rows="4" placeholder="কিভাবে কাজ করতে হবে বিস্তারিত লিখুন..."></textarea>
+        <input type="number" placeholder="বাজেট (ডলারে)">
+        <button class="btn" style="width: 100%;" onclick="alert('কাজটি রিভিউতে পাঠানো হয়েছে!')">পাবলিশ করুন</button>
+    </div>
+</section>
+
+<section id="profile">
+    <div class="job-card" style="text-align:center;">
+        <h3>আপনার প্রোফাইল</h3>
+        <p>নাম: মোঃ রিফাত</p>
+        <hr>
+        <h4>টাকা উত্তোলন (Withdraw)</h4>
+        <input type="text" placeholder="বিকাশ/নগদ নম্বর">
+        <button class="btn" style="background: #e67e22;" onclick="alert('ন্যূনতম $৫ প্রয়োজন')">টাকা তুলুন</button>
+    </div>
+</section>
+
+<div class="footer-nav">
+    <div class="nav-item" onclick="showSection('home')">🏠<br>হোম</div>
+    <div class="nav-item" onclick="showSection('upload')">➕<br>কাজ দিন</div>
+    <div class="nav-item" onclick="showSection('profile')">👤<br>প্রোফাইল</div>
+</div>
+
+<script>
+    function showSection(id) {
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('upload').style.display = 'none';
+        document.getElementById('profile').style.display = 'none';
+        document.getElementById(id).style.display = 'block';
+    }
+</script>
 
 </body>
-  </html>
+    </html>
